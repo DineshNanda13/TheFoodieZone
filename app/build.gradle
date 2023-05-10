@@ -13,6 +13,8 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+        buildConfigField("String", "API_KEY", MY_KEY)
+        buildConfigField("String", "BASE_URL", MY_URL)
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -22,7 +24,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -47,6 +50,11 @@ android {
 }
 
 dependencies {
+    def retrofit_version = "2.8.1"
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    //GSON Converter
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
