@@ -6,7 +6,7 @@ import com.example.thefoodiezone.domain.repository.RestaurantsRepository
 
 class GetLocalRestaurantsUseCase(private val restaurantsRepository: RestaurantsRepository) {
 
-    suspend fun execute(): Resource<APIResponse>{
-        return restaurantsRepository.getLocalRestaurants()
+    suspend fun execute(location: String, term: String): Resource<APIResponse>{
+        return restaurantsRepository.getLocalRestaurants(location, term)
     }
 }
