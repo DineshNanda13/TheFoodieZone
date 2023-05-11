@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -55,6 +56,10 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     //GSON Converter
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    //coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
+    // Annotation processor
+    kapt "androidx.room:room-compiler:2.5.1"
 
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
