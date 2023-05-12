@@ -1,6 +1,6 @@
 package com.example.thefoodiezone.data.model
 
-data class Businesse(
+data class Businesses(
     val alias: String,
     val categories: List<Category>,
     val coordinates: Coordinates,
