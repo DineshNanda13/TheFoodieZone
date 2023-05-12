@@ -2,6 +2,7 @@ package com.example.thefoodiezone.domain.repository
 
 import com.example.thefoodiezone.data.model.APIResponse
 import com.example.thefoodiezone.data.util.Resource
+import javax.inject.Inject
 
 interface RestaurantsRepository {
 

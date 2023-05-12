@@ -1,14 +1,19 @@
 package com.example.thefoodiezone.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Businesses(
     val alias: String,
     val categories: List<Category>,
     val coordinates: Coordinates,
-    val display_phone: String,
+    @SerializedName("display_phone")
+    val displayPhone: String,
     val distance: Double,
     val id: String,
-    val image_url: String,
-    val is_closed: Boolean,
+    @SerializedName("image_url")
+    val imageUrl: String,
+    @SerializedName("is_closed")
+    val isClosed: Boolean,
     val location: Location,
     val name: String,
     val phone: String,
