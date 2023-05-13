@@ -49,7 +49,7 @@ class RestaurantAdapter: RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHo
             binding.tvReviewCount.text = businesses.review_count.toString() + " reviews"
             binding.tvLocation.text = businesses.location.address1
             binding.tvDistance.text = displayDistance(businesses)
-            binding.tvPrice.text = businesses.price
+            binding.tvPhone.text = businesses.phone
 
             setAdapter(businesses.categories, binding)
 
@@ -59,7 +59,6 @@ class RestaurantAdapter: RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHo
                 .into(binding.ivBusinessImage)
 
         }
-
     }
 
     private fun setAdapter(categories: List<Category>, binding: RestaurantListItemBinding) {
@@ -73,4 +72,5 @@ class RestaurantAdapter: RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHo
         val distanceInMiles = "%.2f".format(businesses.distance * milesPerMeter)
         return "$distanceInMiles mi"
     }
+
 }
