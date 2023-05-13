@@ -32,6 +32,7 @@ class RestaurantFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         fragmentRestaurantBinding = FragmentRestaurantBinding.bind(view)
         viewModel = (activity as MainActivity).viewModel
+        restaurantAdapter = (activity as MainActivity).restaurantAdapter
         initRecyclerView()
         viewRestaurantsList()
     }
@@ -61,7 +62,7 @@ class RestaurantFragment : Fragment() {
     }
 
     private fun initRecyclerView(){
-        restaurantAdapter = RestaurantAdapter()
+        //restaurantAdapter = RestaurantAdapter()
         fragmentRestaurantBinding.rvRestaurant.apply {
             adapter = restaurantAdapter
             layoutManager = LinearLayoutManager(activity)

@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.thefoodiezone.databinding.ActivityMainBinding
+import com.example.thefoodiezone.presentation.adapter.RestaurantAdapter
 import com.example.thefoodiezone.presentation.viewModel.RestaurantsViewModel
 import com.example.thefoodiezone.presentation.viewModel.RestaurantsViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,6 +17,8 @@ class MainActivity : FragmentActivity() {
 
     @Inject
     lateinit var factory: RestaurantsViewModelFactory
+    @Inject
+    lateinit var restaurantAdapter: RestaurantAdapter
     lateinit var viewModel: RestaurantsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
