@@ -45,9 +45,9 @@ class RestaurantAdapter: RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHo
 
         fun bind(businesses: Businesses){
             binding.tvName.text = businesses.name
-            binding.ratingBar.rating = businesses.rating.toFloat()
+            binding.ratingBar.rating = businesses.rating!!.toFloat()
             binding.tvReviewCount.text = businesses.review_count.toString() + " reviews"
-            binding.tvLocation.text = businesses.location.address1
+            binding.tvLocation.text = businesses.location?.address1
             binding.tvDistance.text = displayDistance(businesses)
             binding.tvPhone.text = businesses.phone
 
@@ -57,6 +57,12 @@ class RestaurantAdapter: RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHo
                 .load(businesses.imageUrl)
                 .apply(RequestOptions().transforms(CenterCrop(), RoundedCorners(10)))
                 .into(binding.ivBusinessImage)
+
+            binding.root.setOnClickListener {
+                onItemClickListener?.let {
+                    it(businesses)
+                }
+            }
 
         }
     }
@@ -69,8 +75,14 @@ class RestaurantAdapter: RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHo
 
     private fun displayDistance(businesses: Businesses): String{
         val milesPerMeter = 0.000621371
-        val distanceInMiles = "%.2f".format(businesses.distance * milesPerMeter)
+        val distanceInMiles = "%.2f".format(businesses.distance!! * milesPerMeter)
         return "$distanceInMiles mi"
+    }
+
+    private var onItemClickListener : ((Businesses) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Businesses) -> Unit){
+        onItemClickListener = listener
     }
 
 }

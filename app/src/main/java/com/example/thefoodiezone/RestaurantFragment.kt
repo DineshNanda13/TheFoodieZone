@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.thefoodiezone.data.util.Resource
 import com.example.thefoodiezone.databinding.FragmentRestaurantBinding
@@ -33,6 +34,17 @@ class RestaurantFragment : Fragment() {
         fragmentRestaurantBinding = FragmentRestaurantBinding.bind(view)
         viewModel = (activity as MainActivity).viewModel
         restaurantAdapter = (activity as MainActivity).restaurantAdapter
+
+        restaurantAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("selected_restaurant", it)
+            }
+            findNavController().navigate(
+                R.id.action_restaurantFragment_to_infoFragment,
+                bundle
+            )
+        }
+
         initRecyclerView()
         viewRestaurantsList()
     }
