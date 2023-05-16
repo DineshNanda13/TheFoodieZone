@@ -10,4 +10,8 @@ class GetLocalRestaurantsUseCase(private val restaurantsRepository: RestaurantsR
     suspend fun execute(location: String, term: String): Resource<APIResponse>{
         return restaurantsRepository.getLocalRestaurants(location, term)
     }
+
+    /*suspend fun executeSortBy(location: String, sortBy: String): Resource<APIResponse> {
+        return restaurantsRepository.sortRestaurants(location,sortBy)
+    }*/
 }

@@ -2,6 +2,7 @@ package com.example.thefoodiezone.presentation.di
 
 import android.app.Application
 import com.example.thefoodiezone.domain.useCase.GetLocalRestaurantsUseCase
+import com.example.thefoodiezone.domain.useCase.SearchLocalRestaurantsUseCase
 import com.example.thefoodiezone.presentation.viewModel.RestaurantsViewModelFactory
 import dagger.Module
 import dagger.Provides
@@ -16,9 +17,12 @@ class FactoryModule {
     @Singleton
     @Provides
     fun providesRestaurantsViewModelFactory(
-        application: Application, getLocalRestaurantsUseCase: GetLocalRestaurantsUseCase
+        application: Application,
+        getLocalRestaurantsUseCase: GetLocalRestaurantsUseCase,
+        searchLocalRestaurantsUseCase: SearchLocalRestaurantsUseCase
     ): RestaurantsViewModelFactory{
 
-        return RestaurantsViewModelFactory(application, getLocalRestaurantsUseCase)
+        return RestaurantsViewModelFactory(application, getLocalRestaurantsUseCase, searchLocalRestaurantsUseCase)
+
     }
 }

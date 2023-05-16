@@ -33,7 +33,9 @@ class FoodCategoryAdapter: RecyclerView.Adapter<FoodCategoryAdapter.FoodCategory
 
     override fun onBindViewHolder(holder: FoodCategoryViewHolder, position: Int) {
         val category = differ.currentList[position]
-        holder.bind(category)
+        if (position == 0 || position == 1) { //to hide the third element in list
+            holder.bind(category)
+        }
     }
 
     inner class FoodCategoryViewHolder(val binding: FoodCatagoryItemViewBinding): RecyclerView.ViewHolder(binding.root){

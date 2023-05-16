@@ -17,4 +17,31 @@ interface RestaurantsAPIService {
         @Query("term")
         term: String
     ) : Response<APIResponse>
+
+    @Headers("Authorization:Bearer ${BuildConfig.API_KEY}")
+    @GET("businesses/search")
+    suspend fun getRestaurantsWithAddress(
+        @Query("location")
+        location: String
+    ) : Response<APIResponse>
+
+
+    @Headers("Authorization:Bearer ${BuildConfig.API_KEY}")
+    @GET("businesses/search")
+    suspend fun getRestaurantsWithCuisine(
+        @Query("location")
+        location: String,
+        @Query("categories")
+        category: Array<String>
+    ) : Response<APIResponse>
+
+    @Headers("Authorization:Bearer ${BuildConfig.API_KEY}")
+    @GET("businesses/search")
+    suspend fun sortRestaurants(
+        @Query("location")
+        location: String,
+        @Query("sort_by")
+        sortBy: String
+    ) : Response<APIResponse>
+
 }

@@ -7,38 +7,41 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thefoodiezone.data.model.APIResponse
 import com.example.thefoodiezone.data.util.Resource
 import com.example.thefoodiezone.domain.useCase.GetLocalRestaurantsUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.example.thefoodiezone.domain.useCase.SearchLocalRestaurantsUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class RestaurantsViewModel(private val app: Application,
-                           private val getLocalRestaurantsUseCase: GetLocalRestaurantsUseCase): AndroidViewModel(app) {
+class RestaurantsViewModel
+    (private val app: Application,
+     private val getLocalRestaurantsUseCase: GetLocalRestaurantsUseCase,
+     private val searchLocalRestaurantsUseCase: SearchLocalRestaurantsUseCase
+     )
+    : AndroidViewModel(app) {
 
-    val localRestaurants: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
+    val restaurants: MutableLiveData<Resource<APIResponse>> = MutableLiveData()
 
-    fun getLocalRestaurants(location: String, term: String) = viewModelScope.launch(Dispatchers.IO){
+    fun getLocalRestaurants(location: String, term: String) =
+        viewModelScope.launch(Dispatchers.IO) {
 
-        localRestaurants.postValue(Resource.Loading())
+            restaurants.postValue(Resource.Loading())
 
-        try {
-            //to pass context as parameter here we need to extend Android view model instead view model
-            if(isInternetAvailable(app)){
-                val apiResult = getLocalRestaurantsUseCase.execute(location, term)
-                localRestaurants.postValue(apiResult)
-            }else{
-                localRestaurants.postValue(Resource.Error("Internet is not available"))
+            try {
+                //to pass context as parameter here we need to extend Android view model instead view model
+                if (isInternetAvailable(app)) {
+                    val apiResult = getLocalRestaurantsUseCase.execute(location, term)
+                    restaurants.postValue(apiResult)
+                } else {
+                    restaurants.postValue(Resource.Error("Internet is not available"))
+                }
+            } catch (e: Exception) {
+                restaurants.postValue(Resource.Error(e.message.toString()))
             }
-        }catch (e: Exception){
-            localRestaurants.postValue(Resource.Error(e.message.toString()))
-        }
 
-    }
+        }
 
     @Suppress("DEPRECATION")
     fun isInternetAvailable(context: Context): Boolean {
@@ -68,4 +71,61 @@ class RestaurantsViewModel(private val app: Application,
         }
         return result
     }
+
+    fun getLocalRestaurantsByAddress(address: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+
+            restaurants.postValue(Resource.Loading())
+
+            try {
+                //to pass context as parameter here we need to extend Android view model instead view model
+                if (isInternetAvailable(app)) {
+                    val apiResult = searchLocalRestaurantsUseCase.executeSearchWithAddress(address)
+                    restaurants.postValue(apiResult)
+                } else {
+                    restaurants.postValue(Resource.Error("Internet is not available"))
+                }
+            } catch (e: Exception) {
+                restaurants.postValue(Resource.Error(e.message.toString()))
+            }
+
+        }
+    }
+
+    fun getRestaurantsWithCuisineType(location: String, cuisineType: String)  =
+    viewModelScope.launch(Dispatchers.IO) {
+
+        restaurants.postValue(Resource.Loading())
+
+        try {
+            //to pass context as parameter here we need to extend Android view model instead view model
+            if (isInternetAvailable(app)) {
+                val apiResult = searchLocalRestaurantsUseCase.executeSearchWithCuisineType(location, cuisineType)
+                restaurants.postValue(apiResult)
+            } else {
+                restaurants.postValue(Resource.Error("Internet is not available"))
+            }
+        } catch (e: Exception) {
+            restaurants.postValue(Resource.Error(e.message.toString()))
+        }
+    }
+
+    fun sortRestaurants(location: String, sortBy: String) =
+        viewModelScope.launch(Dispatchers.IO) {
+
+            restaurants.postValue(Resource.Loading())
+
+            try {
+                //to pass context as parameter here we need to extend Android view model instead view model
+                if (isInternetAvailable(app)) {
+                    val apiResult = searchLocalRestaurantsUseCase.executeSortBy(location, sortBy)
+                    restaurants.postValue(apiResult)
+                } else {
+                    restaurants.postValue(Resource.Error("Internet is not available"))
+                }
+            } catch (e: Exception) {
+                restaurants.postValue(Resource.Error(e.message.toString()))
+            }
+        }
+
 }

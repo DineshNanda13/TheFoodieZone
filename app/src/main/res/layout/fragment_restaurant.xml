@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".RestaurantFragment">
 
     <ProgressBar
@@ -13,11 +12,78 @@
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
+    <SearchView
+        android:id="@+id/svRestaurant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/teal_200"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSearch"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/svRestaurant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/spinnerSort"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:text="@string/search_by"/>
+
+    <RadioGroup
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroupSearch"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSearch"
+        android:layout_margin="10dp">
+        <RadioButton
+            android:id="@+id/radioButtonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:checked="true"
+            android:textSize="14sp"/>
+        <RadioButton
+            android:id="@+id/radioButtonAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/address"
+            android:textSize="14sp"/>
+        <RadioButton
+            android:id="@+id/radioButtonCuisineType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cuisine_type"
+            android:textSize="14sp"/>
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spinnerSort"
+        android:layout_width="wrap_content"
+        android:spinnerMode="dialog"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/radioGroupSearch"
+        app:layout_constraintTop_toBottomOf="@id/svRestaurant"
+        android:layout_height="wrap_content" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRestaurant"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroupSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/restaurant_list_item"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:itemCount="2"
         android:padding="5dp"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
