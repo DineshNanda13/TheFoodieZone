@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/layout_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".RestaurantFragment">
 
@@ -10,16 +11,18 @@
         android:id="@+id/progressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:indeterminateTint="@color/search_background"
         android:visibility="gone"/>
 
     <SearchView
         android:id="@+id/svRestaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:queryHint="@string/query_hint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/teal_200"/>
+        android:background="@color/search_background"/>
 
     <TextView
         android:layout_width="0dp"
@@ -30,9 +33,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/spinnerSort"
         android:layout_marginStart="16dp"
-        android:textColor="@color/black"
+        android:textColor="@color/search_background"
         android:layout_marginTop="10dp"
-        android:text="@string/search_by"/>
+        android:text="@string/search_by" />
 
     <RadioGroup
         android:layout_width="0dp"
@@ -47,6 +50,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/name"
+            android:textColor="@color/list_text"
+            android:buttonTint="@color/search_background"
             android:checked="true"
             android:textSize="14sp"/>
         <RadioButton
@@ -54,12 +59,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/address"
+            android:textColor="@color/list_text"
+            android:buttonTint="@color/search_background"
             android:textSize="14sp"/>
         <RadioButton
             android:id="@+id/radioButtonCuisineType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/cuisine_type"
+            android:buttonTint="@color/search_background"
+            android:textColor="@color/list_text"
             android:textSize="14sp"/>
     </RadioGroup>
 
@@ -68,10 +77,11 @@
         android:layout_width="wrap_content"
         android:spinnerMode="dialog"
         android:layout_marginTop="10dp"
+        android:background="@color/search_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/radioGroupSearch"
         app:layout_constraintTop_toBottomOf="@id/svRestaurant"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"  />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRestaurant"
