@@ -26,7 +26,6 @@
         android:text="@string/chef_on_call"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="@color/list_text"
         android:layout_marginHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/tvDistance"
@@ -52,7 +51,6 @@
         android:layout_height="wrap_content"
         android:text="@string/_321_reviews"
         android:textSize="12sp"
-        android:textColor="@color/list_text"
         android:layout_marginHorizontal="5dp"
         app:layout_constraintBottom_toBottomOf="@id/ratingBar"
         app:layout_constraintEnd_toStartOf="@id/tvPhone"
@@ -64,7 +62,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/_3440_ave_du_parc"
-        android:textColor="@color/list_text"
         app:layout_constraintStart_toStartOf="@id/tvName"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
@@ -87,7 +84,6 @@
         android:layout_height="wrap_content"
         android:text="@string/_1_7_mi"
         android:textSize="12sp"
-        android:textColor="@color/list_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvName"
         app:layout_constraintTop_toTopOf="parent" />
@@ -98,7 +94,6 @@
         android:layout_height="wrap_content"
         android:text="@string/_14387258262"
         android:textSize="12sp"
-        android:textColor="@color/list_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv_review_count"
         app:layout_constraintTop_toBottomOf="@+id/tvDistance" />

@@ -1,15 +1,21 @@
 <resources>
     <string name="app_name">Foodie Zone</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="name">Name</string>
     <string name="search_by">Search by:</string>
     <string name="address">Address</string>
     <string name="cuisine_type">Cuisine Type</string>
-    <string name="chef_on_call">Chef on call</string>
-    <string name="_321_reviews">321 reviews</string>
-    <string name="_3440_ave_du_parc">3440 Ave du parc</string>
-    <string name="_1_7_mi">1.7 mi</string>
-    <string name="_14387258262">+14387258262</string>
-    <string name="query_hint">Search your nearby places</string>
+    <string name="chef_on_call" translatable="false">Chef on call</string>
+    <string name="_321_reviews" translatable="false">321 reviews</string>
+    <string name="_3440_ave_du_parc" translatable="false">3440 Ave du parc</string>
+    <string name="_1_7_mi" translatable="false">1.7 mi</string>
+    <string name="_14387258262" translatable="false">+14387258262</string>
+    
+ <!--   <string-array name="sort">
+        <item>Sort by</item>
+        <item>Rating</item>
+        <item>Distance</item>
+    </string-array>-->
+
 </resources>
